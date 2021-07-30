@@ -1,0 +1,614 @@
+{
+  "intents": [
+    {
+      "intent": "end",
+      "examples": [
+        {
+          "text": "ok"
+        },
+        {
+          "text": "ok for the data"
+        },
+        {
+          "text": "thanks for the data"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "enquiry",
+      "examples": [
+        {
+          "text": "Can i get the BOD of water?"
+        },
+        {
+          "text": "Can i get the information about the water quality in India?"
+        },
+        {
+          "text": "data"
+        },
+        {
+          "text": "What is the PH value of water in AndhraPradesh?"
+        },
+        {
+          "text": "Which state has more quality of water?"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "greeting",
+      "examples": [
+        {
+          "text": "good afternoon"
+        },
+        {
+          "text": "good evening"
+        },
+        {
+          "text": "good morning"
+        },
+        {
+          "text": "hello"
+        },
+        {
+          "text": "hey"
+        },
+        {
+          "text": "hi"
+        },
+        {
+          "text": "namasthe"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "query",
+      "examples": [
+        {
+          "text": "2018"
+        },
+        {
+          "text": "I want 2017 data"
+        },
+        {
+          "text": "i want 2018 data?"
+        },
+        {
+          "text": "i want 2019 data?"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "end",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "ok",
+          "synonyms": [
+            "bye",
+            "fine",
+            "fn",
+            "OK",
+            "okay"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "thanks",
+          "synonyms": [
+            "Thanks",
+            "thank you",
+            "tq",
+            "tq u",
+            "tq you"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "enquiry",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "BOD",
+          "synonyms": [
+            "B.O.D",
+            "bod"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "PH",
+          "synonyms": [
+            "pH",
+            "ph value",
+            "Phvalue"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "water quality",
+          "synonyms": [
+            "clean water",
+            "data",
+            "pure water",
+            "quality of water",
+            "waterquality"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "greeting",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "good afternoon",
+          "synonyms": [
+            "ga",
+            "good aftrn",
+            "gud afternoon",
+            "gud aftn",
+            "gud aftrn"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "good evening",
+          "synonyms": [
+            "ge",
+            "good eve",
+            "good eveng",
+            "gud eve",
+            "gud eveng",
+            "gud evng"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "good morning",
+          "synonyms": [
+            "gm",
+            "good mng",
+            "good mrng",
+            "gud mng",
+            "gudmng",
+            "gud mrng"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "hello",
+          "synonyms": [
+            "Hello",
+            "Helo",
+            "hlo"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "hi",
+          "synonyms": [
+            "Hi",
+            "hii",
+            "Hiii"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "query",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "2017",
+          "synonyms": [
+            "2017",
+            "2017 data",
+            "2017data",
+            "2017 information"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "2018",
+          "synonyms": [
+            "2018",
+            "2018 data",
+            "2018data",
+            "2018 information"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "2019",
+          "synonyms": [
+            "2019",
+            "2019 data",
+            "2019data",
+            "2019 information"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_7_1627475147593",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "greeting",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#greeting || @greeting",
+      "dialog_node": "node_3_1627466540503",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "enquiry",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#enquiry || @enquiry",
+      "dialog_node": "node_3_1627471970002",
+      "previous_sibling": "node_3_1627466540503"
+    },
+    {
+      "type": "standard",
+      "title": "query",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#query || @query",
+      "dialog_node": "node_7_1627472866462",
+      "previous_sibling": "node_3_1627471970002"
+    },
+    {
+      "type": "standard",
+      "title": "ending",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#end || @end",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_7_1627475147593",
+      "previous_sibling": "node_7_1627472866462"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Which year water quality data do you want to know from the following years: 2017,2018,2019?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1627471970002",
+      "conditions": "@enquiry:(water quality)",
+      "dialog_node": "response_2_1627472181024"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Which year PH data do you want to know from the following years: 2017.2018,2019?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1627471970002",
+      "conditions": "@enquiry:PH",
+      "dialog_node": "response_2_1627472205036",
+      "previous_sibling": "response_2_1627472181024"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "title": "The pH value should be in 6.5-8.5 range, temperature should be room temperature and the BOD should be less than 5mg/L for the usable water.",
+            "source": "https://i.ibb.co/SVK2kMS/Screenshot-2021-07-28.png",
+            "description": "https://ibm.co/3ypYo7X",
+            "response_type": "image"
+          }
+        ]
+      },
+      "parent": "node_7_1627472866462",
+      "conditions": "@query:2018",
+      "dialog_node": "response_2_1627554366965"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Which year BOD data do you want to know from the following years: 2017,2018,2019?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1627471970002",
+      "conditions": "@enquiry:BOD",
+      "dialog_node": "response_3_1627472264531",
+      "previous_sibling": "response_2_1627472205036"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Good Afternoon...How may i help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1627466540503",
+      "conditions": "@greeting:(good afternoon)",
+      "dialog_node": "response_4_1627467220497",
+      "previous_sibling": "response_6_1627467138297"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Good Evening....How am i help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1627466540503",
+      "conditions": "@greeting:(good evening)",
+      "dialog_node": "response_4_1627467275315",
+      "previous_sibling": "response_4_1627467220497"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Good Morning...Hi. I am a CHATESA-Bot"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1627466540503",
+      "conditions": "@greeting:(good morning)",
+      "dialog_node": "response_6_1627467138297"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "thank you for having a great conversation. Hope you are satisfied with our data."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_7_1627475147593",
+      "conditions": "@end:ok",
+      "dialog_node": "response_7_1627475184031"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "title": "The pH value should be in 6.5-8.5 range, temperature should be room temperature and the BOD should be less than 5mg/L for the usable water.",
+            "source": "https://i.ibb.co/vqTChv7/Whats-App-Image-2021-07-29-at-12-27-57-PM-2.jpg",
+            "description": "https://ibm.co/3l9ySA2",
+            "response_type": "image"
+          }
+        ]
+      },
+      "parent": "node_7_1627472866462",
+      "conditions": "@query:2019",
+      "dialog_node": "response_7_1627554554981",
+      "previous_sibling": "response_8_1627554438218"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hey...Hi How can i help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1627466540503",
+      "conditions": "@greeting:hi",
+      "dialog_node": "response_8_1627467463075",
+      "previous_sibling": "response_4_1627467275315"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "title": "The pH value should be in 6.5-8.5 range, temperature should be room temperature and the BOD should be less than 5mg/L for the usable water.",
+            "source": "https://i.ibb.co/fpwNV7D/Screenshot-2021-07-28-1.png",
+            "description": "https://ibm.co/3BK67jf",
+            "response_type": "image"
+          }
+        ]
+      },
+      "parent": "node_7_1627472866462",
+      "conditions": "@query:2017",
+      "dialog_node": "response_8_1627554438218",
+      "previous_sibling": "response_2_1627554366965"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello...How may i help you?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1627466540503",
+      "conditions": "@greeting:hello",
+      "dialog_node": "response_9_1627467539885",
+      "previous_sibling": "response_8_1627467463075"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "You are mostly welcome enjoy our services. Hope that you will visit us again."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1627475147593",
+      "conditions": "@end:thanks",
+      "dialog_node": "response_9_1627475341321",
+      "previous_sibling": "response_7_1627475184031"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. I am CHATESA-Bot capable of providing the water quality information in INDIA of years 2017,2018,2019."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "intent_classification": {
+      "training_backend_version": "v2"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "CHATESA-Bot",
+  "language": "en",
+  "description": "This Bot gives information about the water quality in India."
+}
